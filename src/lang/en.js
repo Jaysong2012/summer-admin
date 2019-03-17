@@ -63,7 +63,19 @@ export default {
     theme: 'Theme',
     clipboardDemo: 'Clipboard',
     i18n: 'I18n',
-    externalLink: 'External Link'
+    externalLink: 'External Link',
+
+
+    //System Manage
+    SystemManage: 'System Manage',
+    Profile: 'Profile',
+    Sysuser: 'System User',
+    Role: 'Role',
+    UserRole: 'User Role',
+    History: 'History',
+
+    //DevelopExample
+    DevelopExample: 'Develop Example',
   },
   navbar: {
     logOut: 'Log Out',
@@ -127,7 +139,8 @@ export default {
     draft: 'Draft',
     delete: 'Delete',
     cancel: 'Cancel',
-    confirm: 'Confirm'
+    confirm: 'Confirm',
+    name: 'Name',
   },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',
@@ -156,5 +169,33 @@ export default {
     close: 'Close',
     closeOthers: 'Close Others',
     closeAll: 'Close All'
+  },
+  system: {
+    sysuser: {
+      list: {
+        name: 'Name',
+        passwd: 'Password',
+        role: 'Role',
+        email: 'Email',
+        status: 'Status',
+        sort: 'Sort'
+      }
+    },
+    role:{
+      permission: 'Permission',
+    }
+  },
+  select:{
+    all: 'All',
+  },
+  status:{
+    forbidden: 'Forbidden',
+    enable: 'Enable',
+  },
+  sort:{
+    id:{
+      asc:'ID ASC',
+      dsc:'ID DSC'
+    }
   }
 }

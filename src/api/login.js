@@ -2,20 +2,22 @@ import request from '../utils/request'
 
 export function loginByUsername(username, password) {
   const data = {
-    username,
-    password
-  }
+    name: username,
+    passwd: password
+  };
   return request({
-    url: '/login/login',
+    url: '/system/sysuser/login',
     method: 'post',
     data
   })
 }
 
-export function logout() {
+export function logout(token) {
+  const data = {token:token}
   return request({
-    url: '/login/logout',
-    method: 'post'
+    url: '/system/sysuser/logout',
+    method: 'post',
+    data
   })
 }
 

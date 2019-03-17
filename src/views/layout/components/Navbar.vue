@@ -6,9 +6,7 @@
 
     <div class="right-menu">
       <template v-if="device!=='mobile'">
-        <search class="right-menu-item" />
-
-        <error-log class="errLog-container right-menu-item hover-effect"/>
+        <!--<search class="right-menu-item" />-->
 
         <screenfull class="right-menu-item hover-effect"/>
 
@@ -25,7 +23,7 @@
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" class="user-avatar">
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -34,7 +32,7 @@
               {{ $t('navbar.dashboard') }}
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">
+          <a target="_blank" href="https://github.com/Jaysong2012/">
             <el-dropdown-item>
               {{ $t('navbar.github') }}
             </el-dropdown-item>
@@ -50,20 +48,18 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
-import ErrorLog from '@/components/ErrorLog'
-import Screenfull from '@/components/Screenfull'
-import SizeSelect from '@/components/SizeSelect'
-import LangSelect from '@/components/LangSelect'
-import ThemePicker from '@/components/ThemePicker'
-import Search from '@/components/HeaderSearch'
+import Breadcrumb from '../../../components/Breadcrumb'
+import Hamburger from '../../../components/Hamburger'
+import Screenfull from '../../../components/Screenfull'
+import SizeSelect from '../../../components/SizeSelect'
+import LangSelect from '../../../components/LangSelect'
+import ThemePicker from '../../../components/ThemePicker'
+import Search from '../../../components/HeaderSearch'
 
 export default {
   components: {
     Breadcrumb,
     Hamburger,
-    ErrorLog,
     Screenfull,
     SizeSelect,
     LangSelect,
@@ -84,6 +80,7 @@ export default {
     },
     logout() {
       this.$store.dispatch('LogOut').then(() => {
+        window.location.href = '/#/login'
         location.reload()// In order to re-instantiate the vue-router object to avoid bugs
       })
     }

@@ -37,7 +37,7 @@ export default {
     'menu1-2-2': '菜单1-2-2',
     'menu1-3': '菜单1-3',
     menu2: '菜单2',
-    Table: 'Table',
+    Table: '表格',
     dynamicTable: '动态Table',
     dragTable: '拖拽Table',
     inlineEditTable: 'Table内编辑',
@@ -63,7 +63,19 @@ export default {
     theme: '换肤',
     clipboardDemo: 'Clipboard',
     i18n: '国际化',
-    externalLink: '外链'
+    externalLink: '外链',
+
+
+    //System Manage
+    SystemManage: '系统管理',
+    Profile: '个人中心',
+    Sysuser: '用户管理',
+    Role: '角色管理',
+    UserRole: '用户角色',
+    History: '操作历史',
+
+    //DevelopExample
+    DevelopExample: '开发中心',
   },
   navbar: {
     logOut: '退出登录',
@@ -111,7 +123,7 @@ export default {
     title: '标题',
     importance: '重要性',
     type: '类型',
-    remark: '点评',
+    remark: '备注',
     search: '搜索',
     add: '添加',
     export: '导出',
@@ -127,7 +139,8 @@ export default {
     draft: '草稿',
     delete: '删除',
     cancel: '取 消',
-    confirm: '确 定'
+    confirm: '确 定',
+    name: '名称',
   },
   errorLog: {
     tips: '请点击右上角bug小图标',
@@ -156,5 +169,33 @@ export default {
     close: '关闭',
     closeOthers: '关闭其它',
     closeAll: '关闭所有'
+  },
+  system: {
+    sysuser: {
+      list: {
+        name: '用户名',
+        passwd: '密码',
+        role: '角色',
+        email: '邮箱',
+        status: '状态',
+        sort: '排序'
+      }
+    },
+    role:{
+      permission: '权限',
+    }
+  },
+  select:{
+    all: '全部',
+  },
+  status:{
+    forbidden: '禁用',
+    enable: '启用',
+  },
+  sort:{
+    id:{
+      asc:'ID 递增',
+      dsc:'ID 递减'
+    }
   }
 }

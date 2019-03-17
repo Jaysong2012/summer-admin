@@ -4,14 +4,13 @@
     <sidebar class="sidebar-container"/>
     <div class="main-container">
       <navbar/>
-      <tags-view/>
       <app-main/>
     </div>
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain, TagsView } from './components'
+import { Navbar, Sidebar, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
@@ -20,7 +19,6 @@ export default {
     Navbar,
     Sidebar,
     AppMain,
-    TagsView
   },
   mixins: [ResizeMixin],
   computed: {
@@ -48,7 +46,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  @import "~@/styles/mixin.scss";
+  @import "../../styles/mixin.scss";
   .app-wrapper {
     @include clearfix;
     position: relative;

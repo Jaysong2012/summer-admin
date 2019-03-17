@@ -8,6 +8,7 @@ const user = {
     code: '',
     token: getToken(),
     name: '',
+    email: '',
     avatar: '',
     introduction: '',
     roles: [],
@@ -35,6 +36,9 @@ const user = {
     SET_NAME: (state, name) => {
       state.name = name
     },
+    SET_Email: (state, email) => {
+      state.email = email
+    },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
     },
@@ -46,12 +50,15 @@ const user = {
   actions: {
     // 用户名登录
     LoginByUsername({ commit }, userInfo) {
-      const username = userInfo.username.trim()
+      const username = userInfo.name.trim()
       return new Promise((resolve, reject) => {
-        loginByUsername(username, userInfo.password).then(response => {
-          const data = response.data
-          commit('SET_TOKEN', data.token)
-          setToken(response.data.token)
+        loginByUsername(username, userInfo.passwd).then(response => {
+          const data = response.data;
+          commit('SET_TOKEN', data.token);
+          commit('SET_NAME', data.name);
+          commit('SET_AVATAR', data.avatar);
+          commit('SET_Email', data.email);
+          setToken(response.data.token);
           resolve()
         }).catch(error => {
           reject(error)

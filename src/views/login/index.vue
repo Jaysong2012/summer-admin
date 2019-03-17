@@ -5,15 +5,15 @@
         <h3 class="title">
           {{ $t('login.title') }}
         </h3>
-        <LangSelect class="set-language" />
+        <lang-select class="set-language" />
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="name">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          v-model="loginForm.username"
+          v-model="loginForm.name"
           :placeholder="$t('login.username')"
           name="username"
           type="text"
@@ -21,12 +21,12 @@
         />
       </el-form-item>
 
-      <el-form-item prop="password">
+      <el-form-item prop="passwd">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
         <el-input
-          v-model="loginForm.password"
+          v-model="loginForm.passwd"
           :type="passwordType"
           :placeholder="$t('login.password')"
           name="password"
@@ -93,12 +93,12 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '1111111'
+        name: 'admin',
+        passwd: '1111111'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        name: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        passwd: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       passwordType: 'password',
       loading: false,
@@ -131,14 +131,14 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$router.push({ path: this.redirect || '/' })
-          // this.loading = true
-          // this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
-          //   this.loading = false
-          //   this.$router.push({ path: this.redirect || '/' })
-          // }).catch(() => {
-          //   this.loading = false
-          // })
+          //this.$router.push({ path: this.redirect || '/' })
+          this.loading = true
+          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
+            this.loading = false
+            this.$router.push({ path: this.redirect || '/' })
+          }).catch(() => {
+            this.loading = false
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -280,6 +280,7 @@ $light_gray:#eee;
     position: absolute;
     right: 0;
     bottom: 6px;
+    display: none;
   }
 }
 </style>
