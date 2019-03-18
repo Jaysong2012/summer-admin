@@ -16,6 +16,14 @@ export function fetchRoleList(data) {
     })
 }
 
+export function fetchHistoryList(data) {
+    return request({
+        url: '/system/history/list',
+        method: 'post',
+        data
+    })
+}
+
 export function conditionRoleList() {
     return request({
         url: '/condition/role/list',
@@ -42,6 +50,22 @@ export function saveRole(data) {
 export function saveSysuser(data) {
     return request({
         url: '/system/sysuser/save',
+        method: 'post',
+        data
+    })
+}
+
+export function statusRole(data) {
+    return request({
+        url: '/system/role/status',
+        method: 'post',
+        data
+    })
+}
+
+export function statusSysuser(data) {
+    return request({
+        url: '/system/sysuser/status',
         method: 'post',
         data
     })

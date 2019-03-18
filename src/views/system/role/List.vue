@@ -53,14 +53,15 @@
 </template>
 
 <script>
-    import { fetchRoleList , saveRole} from '../../../api/system'
+    import { fetchRoleList , statusRole} from '../../../api/system'
     import waves from '../../../directive/waves' // Waves directive
     import Pagination from '../../../components/Pagination' // Secondary package based on el-pagination
     import AddOrEdit from './AddOrEdit';
     import i18n from '../../../lang'
+    import { Message } from 'element-ui'
 
     export default {
-        name: "sysuser.List",
+        name: "role.List",
         components: { Pagination ,AddOrEdit },
         directives: { waves },
         filters: {
@@ -93,11 +94,20 @@
         },
         methods: {
             getList() {
-                this.listLoading = true
+                this.listLoading = true;
                 fetchRoleList(this.listQuery).then(response => {
-                    this.list = response.data.list;
-                    this.total = response.data.total;
-
+                    if (response.returnCode == "000000"){
+                        this.list = response.data.list;
+                        this.total = response.data.total;
+                    }else{
+                        this.list = response.data.list;
+                        this.total = response.data.total;
+                        Message({
+                            message: response.returnMsg,
+                            type: 'error',
+                            duration: 2 * 1000
+                        });
+                    }
                     this.listLoading = false
                 })
             },
@@ -116,8 +126,8 @@
             handleModifyStatus(row, status) {
                 let obj = {};
                 obj.id = row.id;
-                obj.status = status
-                saveRole(obj).then(response => {
+                obj.status = status;
+                statusRole(obj).then(response => {
                     if (response.returnCode == "000000"){
                         row.status = status;
                         this.$message({
@@ -125,12 +135,13 @@
                             type: 'success',
                             duration: 2000,
                         });
+                        this.handleFilter();
                     }else {
-                        this.message({
+                        Message({
                             message: response.returnMsg,
-                            type: 'fail',
-                            duration: 2000
-                        })
+                            type: 'error',
+                            duration: 2 * 1000
+                        });
                     }
                 })
             },

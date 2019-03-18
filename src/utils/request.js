@@ -36,34 +36,36 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data;
-    if (res.returnCode != '000000') {
-      Message({
-        message: res.returnMsg,
-        type: 'error',
-        duration: 5 * 1000
-      });
-      // 000011:Token 过期了;
-      if (res.returnCode == '000011') {
-        // 请自行在引入 MessageBox
-        // import { Message, MessageBox } from 'element-ui'
-        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
-          confirmButtonText: '重新登录',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('FedLogOut').then(() => {
-            window.location.href = '/#/login'
-            location.reload() // 为了重新实例化vue-router对象 避免bug
-          })
+    // if (res.returnCode != '000000') {
+    //   Message({
+    //     message: res.returnMsg,
+    //     type: 'error',
+    //     duration: 5 * 1000
+    //   });
+    //
+    //   return Promise.reject('error')
+    // }
+    // 000011:Token 过期了;
+    if (res.returnCode == '000011') {
+      // 请自行在引入 MessageBox
+      // import { Message, MessageBox } from 'element-ui'
+      MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+        confirmButtonText: '重新登录',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        store.dispatch('FedLogOut').then(() => {
+          window.location.href = '/#/login';
+          location.reload() // 为了重新实例化vue-router对象 避免bug
         })
-      }
+      })
+    }
 
-      // 000011:Token 过期了;
-      if (res.returnCode == '000022') {
-        //todo 没有权限
-      }
-      return Promise.reject('error')
-    } else {
+    // 000011:Token 过期了;
+    else if (res.returnCode == '000022') {
+      window.location.href = '/#/error/404'
+    }
+    else {
       return response.data
     }
   },

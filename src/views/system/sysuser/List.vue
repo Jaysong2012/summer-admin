@@ -1,7 +1,8 @@
 <template>
     <div class="app-container">
         <div class="filter-container">
-            <el-input :placeholder="$t('system.sysuser.list.name')" v-model="listQuery.name" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+            <!--<el-input :placeholder="$t('system.sysuser.list.name')" v-model="listQuery.name" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>-->
+            <role-select v-bind:selectedRoomId="listQuery.roleId" v-on:handleRoleIdSelectChange="handleRoleIdSelectChange"></role-select>
             <el-select v-model="listQuery.status" :placeholder="$t('system.sysuser.list.status')" clearable style="width: 140px" class="filter-item" @change="handleFilter">
                 <el-option v-for="item in statusOptions" :key="item.key" :label="item.label" :value="item.key"/>
             </el-select>
@@ -64,17 +65,19 @@
 </template>
 
 <script>
-    import { fetchSysuserList ,saveSysuser } from '../../../api/system'
+    import { fetchSysuserList ,statusSysuser } from '../../../api/system'
     import waves from '../../../directive/waves' // Waves directive
     import Pagination from '../../../components/Pagination' // Secondary package based on el-pagination
     import RoleCheck from '../../../components/RoleCheck'
+    import RoleSelect from '../../../components/RoleSelect'
     import i18n from '../../../lang'
+    import { Message } from 'element-ui'
     import AddOrEdit from './AddOrEdit';
 
 
     export default {
         name: "sysuser.List",
-        components: { Pagination ,RoleCheck,AddOrEdit},
+        components: { Pagination ,RoleCheck,AddOrEdit,RoleSelect},
         directives: { waves },
         filters: {
             statusFilter(status) {
@@ -96,7 +99,7 @@
                     currentPage: 1,
                     pageSize: 20,
                     name: '',
-                    roleId: 0,
+                    roleId: '',
                     status: 1,
                     sort: '+id'
                 },
@@ -117,8 +120,18 @@
                 //     this.listLoading = false
                 // }, 1.5 * 1000)
                 fetchSysuserList(this.listQuery).then(response => {
-                  this.list = response.data.list;
-                  this.total = response.data.total;
+                    if (response.returnCode == "000000"){
+                        this.list = response.data.list;
+                        this.total = response.data.total;
+                    }else{
+                        this.list = response.data.list;
+                        this.total = response.data.total;
+                        Message({
+                            message: response.returnMsg,
+                            type: 'error',
+                            duration: 2 * 1000
+                        });
+                    }
 
                   this.listLoading = false
                 })
@@ -138,8 +151,8 @@
             handleModifyStatus(row, status) {
                 let obj = {};
                 obj.id = row.id;
-                obj.status = status
-                saveSysuser(obj).then(response => {
+                obj.status = status;
+                statusSysuser(obj).then(response => {
                     if (response.returnCode == "000000"){
                         row.status = status;
                         this.$message({
@@ -147,19 +160,23 @@
                             type: 'success',
                             duration: 2000,
                         });
+                        this.handleFilter();
                     }else {
-                        this.message({
+                        Message({
                             message: response.returnMsg,
-                            type: 'fail',
-                            duration: 2000
-                        })
+                            type: 'error',
+                            duration: 2 * 1000
+                        });
                     }
                 })
             },
             handleDialogVisible(val) {
                 this.dialogVisible = val;
             },
-
+            handleRoleIdSelectChange(roleId){
+                this.listQuery.roleId = roleId;
+                this.handleFilter();
+            }
         }
     }
 </script>

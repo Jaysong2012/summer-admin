@@ -183,6 +183,13 @@ export default {
     },
     role:{
       permission: '权限',
+    },
+    history:{
+      user:'用户',
+      url:'请求',
+      params:'参数',
+      rsp:'响应',
+      time:'时间',
     }
   },
   select:{

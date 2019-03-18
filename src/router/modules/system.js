@@ -30,7 +30,7 @@ const systemRouter = {
         },
         {
             path: 'history',
-            component: () => import('../../views/components-demo/markdown'),
+            component: () => import('../../views/system/history/List'),
             name: 'History',
             meta: { title: 'History' }
         },
