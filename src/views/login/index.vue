@@ -49,7 +49,7 @@
         </div>
         <div class="tips">
           <span style="margin-right:18px;">
-            {{ $t('login.username') }} : editor
+            {{ $t('login.username') }} : test
           </span>
           <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
         </div>
@@ -94,7 +94,7 @@ export default {
     return {
       loginForm: {
         name: 'admin',
-        passwd: '1111111'
+        passwd: '12345678'
       },
       loginRules: {
         name: [{ required: true, trigger: 'blur', validator: validateUsername }],

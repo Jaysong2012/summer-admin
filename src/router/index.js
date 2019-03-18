@@ -66,6 +66,13 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
+    redirect: '/system',
+    name: 'SystemManage',
+    hidden: true,
+  },
+  {
+    path: '/',
+    component: Layout,
     redirect: '/dashboard',
     name: 'Dashboard',
     hidden: true,

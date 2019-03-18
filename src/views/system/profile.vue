@@ -29,6 +29,9 @@ export default {
             'name',
         ])
    },
+    created() {
+        this.testLogin()
+    },
     methods: {
        handleChange: function () {
            MessageBox.confirm('当前不可以修改哦', '拒绝修改', {
@@ -37,7 +40,12 @@ export default {
                type: 'warning'
            }).then(() => {
            })
-       }
+       },
+        testLogin(){
+           if(this.name == undefined || this.name ==''){
+               window.location.href = '/#/login';
+           }
+        }
     }
 }
 </script>
