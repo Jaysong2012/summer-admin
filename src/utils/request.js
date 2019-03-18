@@ -57,7 +57,7 @@ service.interceptors.response.use(
         console.log('hhhh33333'+window.location.href);
         store.dispatch('FedLogOut').then(() => {
           console.log('hhhh'+window.location.href);
-          window.location.href = 'summer-admin/dist/index.html/#/login';
+          window.location.href = 'index.html/#/login';
           //this.$router.push('/login');
           //location.reload();// 为了重新实例化vue-router对象 避免bug
           return res;
@@ -67,7 +67,7 @@ service.interceptors.response.use(
 
     // 000011:Token 过期了;
     else if (res.returnCode == '000022') {
-      window.location.href = 'summer-admin/dist/index.html/#/error/404'
+      window.location.href = 'index.html/#/error/404'
       //this.$router.push('/error/404');
       return res
     }
