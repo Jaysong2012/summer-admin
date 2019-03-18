@@ -43,7 +43,7 @@ export default {
        },
         testLogin(){
            if(this.name == undefined || this.name ==''){
-               window.location.href = '/#/login';
+               this.$router.push('/login');
            }
         }
     }
