@@ -5,7 +5,7 @@ import { getToken } from '../utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://test.yanmachina.com/summerbackend', // api 的 base_url
+  baseURL: 'https://test.yanmachina.com/summerbackend', // api 的 base_url
   timeout: 5000 // request timeout
 });
 
