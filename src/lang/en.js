@@ -6,6 +6,7 @@ export default {
     guide: 'Guide',
     permission: 'Permission',
     pagePermission: 'Page Permission',
+    rolePermission: 'Role Permission',
     directivePermission: 'Directive Permission',
     icons: 'Icons',
     components: 'Components',
@@ -42,8 +43,6 @@ export default {
     dragTable: 'Drag Table',
     inlineEditTable: 'Inline Edit',
     complexTable: 'Complex Table',
-    treeTable: 'Tree Table',
-    customTreeTable: 'Custom TreeTable',
     tab: 'Tab',
     form: 'Form',
     createArticle: 'Create Article',
@@ -56,6 +55,7 @@ export default {
     excel: 'Excel',
     exportExcel: 'Export Excel',
     selectExcel: 'Export Selected',
+    mergeHeader: 'Merge Header',
     uploadExcel: 'Upload Excel',
     zip: 'Zip',
     pdf: 'PDF',
@@ -65,17 +65,13 @@ export default {
     i18n: 'I18n',
     externalLink: 'External Link',
 
-
-    //System Manage
+    // System Manage
     SystemManage: 'System Manage',
     Profile: 'Profile',
     Sysuser: 'System User',
     Role: 'Role',
     UserRole: 'User Role',
-    History: 'History',
-
-    //DevelopExample
-    DevelopExample: 'Develop Example',
+    History: 'History'
   },
   navbar: {
     logOut: 'Log Out',
@@ -90,6 +86,7 @@ export default {
     username: 'Username',
     password: 'Password',
     any: 'any',
+    no_change: 'No Change',
     thirdparty: 'Or connect with',
     thirdpartyTips: 'Can not be simulated on local, so please combine you own business simulation! ! !'
   },
@@ -98,9 +95,14 @@ export default {
     github: 'Github Repository'
   },
   permission: {
+    addRole: 'New Role',
+    editPermission: 'Edit Permission',
     roles: 'Your roles',
     switchRoles: 'Switch roles',
-    tips: 'In some cases it is not suitable to use v-permission, such as element Tab component or el-table-column and other asynchronous rendering dom cases which can only be achieved by manually setting the v-if.'
+    tips: 'In some cases it is not suitable to use v-permission, such as element Tab component or el-table-column and other asynchronous rendering dom cases which can only be achieved by manually setting the v-if.',
+    delete: 'Delete',
+    confirm: 'Confirm',
+    cancel: 'Cancel'
   },
   guide: {
     description: 'The guide page is useful for some people who entered the project for the first time. You can briefly introduce the features of the project. Demo is based on ',
@@ -140,7 +142,7 @@ export default {
     delete: 'Delete',
     cancel: 'Cancel',
     confirm: 'Confirm',
-    name: 'Name',
+    name: 'Name'
   },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',
@@ -170,6 +172,13 @@ export default {
     closeOthers: 'Close Others',
     closeAll: 'Close All'
   },
+  settings: {
+    title: 'Page style setting',
+    theme: 'Theme Color',
+    tagsView: 'Open Tags-View',
+    fixedHeader: 'Fixed Header',
+    sidebarLogo: 'Sidebar Logo'
+  },
   system: {
     sysuser: {
       list: {
@@ -177,32 +186,33 @@ export default {
         passwd: 'Password',
         role: 'Role',
         email: 'Email',
+        introduction: 'introduction',
         status: 'Status',
         sort: 'Sort'
       }
     },
-    role:{
-      permission: 'Permission',
+    role: {
+      permission: 'Permission'
     },
-    history:{
-      user:'User',
-      url:'Url',
-      params:'Params',
-      rsp:'Response',
-      time:'Time',
+    history: {
+      user: 'User',
+      url: 'Url',
+      params: 'Params',
+      rsp: 'Response',
+      time: 'Time'
     }
   },
-  select:{
-    all: 'All',
+  select: {
+    all: 'All'
   },
-  status:{
+  status: {
     forbidden: 'Forbidden',
-    enable: 'Enable',
+    enable: 'Enable'
   },
-  sort:{
-    id:{
-      asc:'ID ASC',
-      dsc:'ID DSC'
+  sort: {
+    id: {
+      asc: 'ID ASC',
+      dsc: 'ID DSC'
     }
   }
 }

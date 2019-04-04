@@ -1,4 +1,4 @@
-# summer-admin
+# summer-admin-2
 
 ## Project setup
 ```

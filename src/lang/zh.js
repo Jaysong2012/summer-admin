@@ -5,6 +5,7 @@ export default {
     documentation: '文档',
     guide: '引导页',
     permission: '权限测试页',
+    rolePermission: '角色权限',
     pagePermission: '页面权限',
     directivePermission: '指令权限',
     icons: '图标',
@@ -37,13 +38,11 @@ export default {
     'menu1-2-2': '菜单1-2-2',
     'menu1-3': '菜单1-3',
     menu2: '菜单2',
-    Table: '表格',
+    Table: 'Table',
     dynamicTable: '动态Table',
     dragTable: '拖拽Table',
     inlineEditTable: 'Table内编辑',
     complexTable: '综合Table',
-    treeTable: '树形表格',
-    customTreeTable: '自定义树表',
     tab: 'Tab',
     form: '表单',
     createArticle: '创建文章',
@@ -54,9 +53,10 @@ export default {
     page404: '404',
     errorLog: '错误日志',
     excel: 'Excel',
-    exportExcel: 'Export Excel',
-    selectExcel: 'Export Selected',
-    uploadExcel: 'Upload Excel',
+    exportExcel: '导出 Excel',
+    selectExcel: '导出 已选择项',
+    mergeHeader: '导出 多级表头',
+    uploadExcel: '上传 Excel',
     zip: 'Zip',
     pdf: 'PDF',
     exportZip: 'Export Zip',
@@ -64,18 +64,13 @@ export default {
     clipboardDemo: 'Clipboard',
     i18n: '国际化',
     externalLink: '外链',
-
-
-    //System Manage
+    // System Manage
     SystemManage: '系统管理',
     Profile: '个人中心',
     Sysuser: '用户管理',
     Role: '角色管理',
     UserRole: '用户角色',
-    History: '操作历史',
-
-    //DevelopExample
-    DevelopExample: '开发中心',
+    History: '操作历史'
   },
   navbar: {
     logOut: '退出登录',
@@ -90,6 +85,7 @@ export default {
     username: '账号',
     password: '密码',
     any: '随便填',
+    no_change: '勿修改',
     thirdparty: '第三方登录',
     thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
   },
@@ -98,9 +94,14 @@ export default {
     github: 'Github 地址'
   },
   permission: {
+    addRole: '新增角色',
+    editPermission: '编辑权限',
     roles: '你的权限',
     switchRoles: '切换权限',
-    tips: '在某些情况下，不适合使用 v-permission。例如：Element-UI 的 Tab 组件或 el-table-column 以及其它动态渲染 dom 的场景。你只能通过手动设置 v-if 来实现。'
+    tips: '在某些情况下，不适合使用 v-permission。例如：Element-UI 的 Tab 组件或 el-table-column 以及其它动态渲染 dom 的场景。你只能通过手动设置 v-if 来实现。',
+    delete: '删除',
+    confirm: '确定',
+    cancel: '取消'
   },
   guide: {
     description: '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本 Demo 是基于',
@@ -123,7 +124,7 @@ export default {
     title: '标题',
     importance: '重要性',
     type: '类型',
-    remark: '备注',
+    remark: '点评',
     search: '搜索',
     add: '添加',
     export: '导出',
@@ -140,7 +141,7 @@ export default {
     delete: '删除',
     cancel: '取 消',
     confirm: '确 定',
-    name: '名称',
+    name: '名称'
   },
   errorLog: {
     tips: '请点击右上角bug小图标',
@@ -170,6 +171,13 @@ export default {
     closeOthers: '关闭其它',
     closeAll: '关闭所有'
   },
+  settings: {
+    title: '系统布局配置',
+    theme: '主题色',
+    tagsView: '开启 Tags-View',
+    fixedHeader: '固定 Header',
+    sidebarLogo: '侧边栏 Logo'
+  },
   system: {
     sysuser: {
       list: {
@@ -177,32 +185,33 @@ export default {
         passwd: '密码',
         role: '角色',
         email: '邮箱',
+        introduction: '简介',
         status: '状态',
         sort: '排序'
       }
     },
-    role:{
-      permission: '权限',
+    role: {
+      permission: '权限'
     },
-    history:{
-      user:'用户',
-      url:'请求',
-      params:'参数',
-      rsp:'响应',
-      time:'时间',
+    history: {
+      user: '用户',
+      url: '请求',
+      params: '参数',
+      rsp: '响应',
+      time: '时间'
     }
   },
-  select:{
-    all: '全部',
+  select: {
+    all: '全部'
   },
-  status:{
+  status: {
     forbidden: '禁用',
-    enable: '启用',
+    enable: '启用'
   },
-  sort:{
-    id:{
-      asc:'ID 递增',
-      dsc:'ID 递减'
+  sort: {
+    id: {
+      asc: 'ID 递增',
+      dsc: 'ID 递减'
     }
   }
 }

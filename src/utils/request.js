@@ -1,13 +1,15 @@
 import axios from 'axios'
-import { Message , MessageBox} from 'element-ui'
-import store from '../store'
-import { getToken } from '../utils/auth'
+import { MessageBox, Message } from 'element-ui'
+import store from '@/store'
+import router from '@/router'
+import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'https://test.yanmachina.com/summerbackend', // api 的 base_url
+  baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
+  withCredentials: true, // 跨域请求时发送 cookies
   timeout: 5000 // request timeout
-});
+})
 
 // request interceptor
 service.interceptors.request.use(
@@ -29,50 +31,43 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   /**
+   * If you want to get information such as headers or status
+   * Please return  response => response
+  */
+  /**
    * 下面的注释为通过在response里，自定义code来标示请求状态
    * 当code返回如下情况则说明权限有问题，登出并返回到登录页
-   * 如想通过 xmlhttprequest 来状态码标识 逻辑可写在下面error中
+   * 如想通过 XMLHttpRequest 来状态码标识 逻辑可写在下面error中
    * 以下代码均为样例，请结合自生需求加以修改，若不需要，则可删除
    */
   response => {
-    const res = response.data;
-    // if (res.returnCode != '000000') {
-    //   Message({
-    //     message: res.returnMsg,
-    //     type: 'error',
-    //     duration: 5 * 1000
-    //   });
-    //
-    //   return Promise.reject('error')
-    // }
-    // 000011:Token 过期了;
-    if (res.returnCode == '000011') {
-      // 请自行在引入 MessageBox
-      // import { Message, MessageBox } from 'element-ui'
-      MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
-        confirmButtonText: '重新登录',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        console.log('hhhh33333'+window.location.href);
-        store.dispatch('FedLogOut').then(() => {
-          console.log('hhhh'+window.location.href);
-          window.location.href = 'index.html#/login';
-          //this.$router.push('/login');
-          //location.reload();// 为了重新实例化vue-router对象 避免bug
-          return res;
-        })
+    const res = response.data
+    if (res.returnCode !== '000000') {
+      Message({
+        message: res.returnMsg,
+        type: 'error',
+        duration: 5 * 1000
       })
-    }
-
-    // 000011:Token 过期了;
-    else if (res.returnCode == '000022') {
-      window.location.href = 'index.html#/error/404'
-      //this.$router.push('/error/404');
+      // 000011:非法的token;
+      if (res.returnCode === '000011') {
+        // 请自行在引入 MessageBox
+        // import { Message, MessageBox } from 'element-ui'
+        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          store.dispatch('user/resetToken').then(() => {
+            location.reload() // 为了重新实例化vue-router对象 避免bug
+          })
+        })
+      }
+      if (res.returnCode === '000022') {
+        router.push('/401')
+      }
+      return Promise.reject('error')
+    } else {
       return res
-    }
-    else {
-      return response.data
     }
   },
   error => {
@@ -84,6 +79,6 @@ service.interceptors.response.use(
     })
     return Promise.reject(error)
   }
-);
+)
 
 export default service
